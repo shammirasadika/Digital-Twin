@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+.env.*
+
+# Node.js
+node_modules/
+.npm/
+*.log
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+build/
+dist/
+.next/
+
+# Misc
+*.sqlite3
+*.db
+*.bak
+*.swp
+
+# Local environment
+*.local
+
+# Test coverage
+coverage/
+
+# Others
+package-lock.json
+yarn.lock

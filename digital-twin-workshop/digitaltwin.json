@@ -1,0 +1,195 @@
+{
+  "personal": {
+    "name": "Shammi Parussella",
+    "title": "Graduate Software Engineer | Data Analyst | IT Support",
+    "location": "Hobart, Tasmania, Australia",
+    "summary": "Results-driven Computer Science graduate with hands-on experience in software engineering, data analysis, and IT support. Adept at collaborating in team environments, delivering technical solutions, and supporting business operations. Passionate about leveraging technology to solve real-world problems.",
+    "elevator_pitch": "I am a recent Computer Science graduate with a strong foundation in software development, data analytics, and IT support. My experience spans academic projects, internships, and professional roles where I have demonstrated adaptability, problem-solving, and a commitment to continuous learning.",
+    "contact": {
+      "email": "shammi.parussella@email.com",
+      "linkedin": "https://linkedin.com/in/shammi-parussella",
+      "github": "https://github.com/shammi-parussella"
+    }
+  },
+  "salary_location": {
+    "current_salary": "Internship / Graduate",
+    "salary_expectations": "$60,000 - $75,000 AUD (negotiable)",
+    "location_preferences": ["Hobart", "Tasmania", "Remote", "Hybrid", "Melbourne"],
+    "relocation_willing": true,
+    "remote_experience": "Experienced with remote and hybrid work environments, using collaboration tools like Teams and Slack.",
+    "travel_availability": "Available for interstate travel as required",
+    "work_authorization": "Australian Citizen"
+  },
+  "experience": [
+    {
+      "company": "University of Tasmania (UTAS)",
+      "title": "Software Engineering Intern",
+      "duration": "Feb 2024 – Present",
+      "company_context": "Research and development internship focused on digital twin systems and AI integration.",
+      "team_structure": "Collaborated with academic supervisors and a multidisciplinary team.",
+      "achievements_star": [
+        {
+          "situation": "Developing an AI-powered digital twin for interview preparation.",
+          "task": "Design and implement a RAG system with vector database integration.",
+          "action": "Built a digital twin MCP server in Python, integrated Upstash Vector DB, implemented Groq API for LLM, and created an embedding pipeline for personal data.",
+          "result": "Deployed a working digital twin system that answers interview questions with context-aware responses."
+        }
+      ],
+      "technical_skills_used": ["Python", "RAG Systems", "Vector Databases", "Upstash", "Groq API", "LLM Integration", "FastAPI", "JSON", "REST APIs"],
+      "leadership_examples": ["Self-directed project management", "Technical documentation", "Problem-solving integration challenges"],
+      "projects_completed": ["Digital Twin MCP Server", "RAG Food Workshop"]
+    },
+    {
+      "company": "TasNetworks",
+      "title": "IT Support Analyst (Internship)",
+      "duration": "Jul 2023 – Nov 2023",
+      "company_context": "Tasmanian electricity transmission and distribution company.",
+      "team_structure": "Worked in a cross-functional IT support team.",
+      "achievements_star": [
+        {
+          "situation": "Supporting end-users with technical issues and system upgrades.",
+          "task": "Provide IT support, troubleshoot hardware/software, and assist with system rollouts.",
+          "action": "Resolved tickets, configured devices, and contributed to documentation and process improvement.",
+          "result": "Improved user satisfaction and reduced ticket resolution times."
+        }
+      ],
+      "technical_skills_used": ["Windows OS", "Active Directory", "Office 365", "ServiceNow", "Remote Desktop", "Hardware Troubleshooting"],
+      "leadership_examples": ["User training", "Process documentation"],
+      "projects_completed": ["Device rollout", "Knowledge base update"]
+    },
+    {
+      "company": "Woolworths Group",
+      "title": "Customer Service Team Member",
+      "duration": "2019 – 2022",
+      "company_context": "Major Australian supermarket chain.",
+      "team_structure": "Worked in a large, customer-facing team.",
+      "achievements_star": [
+        {
+          "situation": "High-volume retail environment requiring excellent customer service.",
+          "task": "Assist customers, manage transactions, and maintain store standards.",
+          "action": "Provided friendly service, handled cash and EFTPOS, and supported team operations.",
+          "result": "Consistently received positive feedback and contributed to team targets."
+        }
+      ],
+      "technical_skills_used": ["POS Systems", "Customer Service", "Teamwork"],
+      "leadership_examples": ["Peer mentoring"],
+      "projects_completed": ["Store promotions", "Inventory management"]
+    }
+  ],
+  "skills": {
+    "technical": {
+      "programming_languages": [
+        {"language": "Python", "years": 2, "proficiency": "Intermediate", "frameworks": ["FastAPI", "Flask"]},
+        {"language": "JavaScript", "years": 1, "proficiency": "Beginner-Intermediate", "frameworks": ["Node.js", "React"]},
+        {"language": "SQL", "years": 1, "proficiency": "Beginner", "frameworks": ["SQLite", "PostgreSQL"]}
+      ],
+      "databases": ["Upstash Vector", "PostgreSQL", "SQLite"],
+      "cloud_platforms": ["AWS", "Vercel", "Docker"],
+      "ai_ml": ["RAG systems", "Vector databases", "LLM integration", "Embeddings", "Semantic search"],
+      "tools_technologies": ["Git", "VS Code", "PowerShell", "Linux", "REST APIs", "JSON"]
+    },
+    "soft_skills": ["Problem-solving", "Teamwork", "Communication", "Adaptability", "Time management", "Attention to detail"],
+    "certifications": ["ITIL Foundation (in progress)"]
+  },
+  "education": {
+    "university": "University of Tasmania (UTAS)",
+    "degree": "Bachelor of Information and Communication Technology (BICT)",
+    "graduation_year": "2025 (expected)",
+    "gpa": "N/A",
+    "relevant_coursework": ["Software Engineering", "Data Analytics", "Database Systems", "Web Development", "AI/Machine Learning"],
+    "thesis_project": "Digital Twin Systems for Interview Preparation"
+  },
+  "projects_portfolio": [
+    {
+      "name": "Digital Twin MCP Server",
+      "description": "AI-powered interview preparation system using RAG architecture. Built MCP server to store and retrieve professional information using vector embeddings for context-aware responses.",
+      "technologies": ["Python", "Upstash Vector", "Groq API", "FastAPI"],
+      "impact": "Enabled intelligent interview preparation with personalized, context-aware responses.",
+      "github_url": "https://github.com/shammi-parussella/digital-twin",
+      "key_features": ["Vector database integration", "Semantic search", "LLM-powered responses"]
+    },
+    {
+      "name": "RAG Food Workshop",
+      "description": "Retrieval-Augmented Generation system for food-related queries and recommendations.",
+      "technologies": ["Python", "Upstash Vector", "Groq API"],
+      "impact": "Learned foundational RAG concepts and vector database implementation.",
+      "key_features": ["Data ingestion pipeline", "Vector storage", "Semantic retrieval"]
+    }
+  ],
+  "career_goals": {
+    "short_term": "Secure a graduate software engineering or data analyst role.",
+    "long_term": "Progress to a technical lead or specialist in AI-powered applications.",
+    "learning_focus": ["Advanced Python", "Cloud infrastructure", "AI/ML systems", "DevOps practices"],
+    "industries_interested": ["Technology", "Utilities", "Retail", "AI/ML"]
+  },
+  "interview_prep": {
+    "common_questions": {
+      "behavioral": [
+        {
+          "question": "Tell me about a time you had to learn a new technology quickly.",
+          "answer": "During my UTAS internship, I had to quickly learn about vector databases and RAG architecture. I read documentation, built a simple project, and then implemented a full digital twin system using Upstash and Groq."
+        },
+        {
+          "question": "Describe a challenging technical problem you solved.",
+          "answer": "I resolved a tricky bug in the embedding pipeline by systematically debugging, checking logs, and consulting documentation, which improved my troubleshooting skills."
+        }
+      ],
+      "technical": [
+        {
+          "question": "Explain how you implemented the RAG system in your digital twin project.",
+          "answer": "I structured my data in JSON, generated embeddings with sentence transformers, stored them in Upstash Vector, and used Groq LLM for context-aware responses."
+        },
+        {
+          "question": "What's your experience with APIs and integration?",
+          "answer": "I've integrated REST APIs (Groq, Upstash), handled authentication, and built endpoints using FastAPI."
+        }
+      ],
+      "situational": [
+        {
+          "question": "How would you approach learning a new codebase?",
+          "answer": "I start with documentation, explore the project structure, run the application, and make small changes to understand the flow."
+        }
+      ],
+      "company_research": {
+        "research_areas": ["Company mission", "Tech stack", "Team structure"],
+        "preparation_questions": [
+          "What excites you about our company?",
+          "Why do you want to work here?"
+        ],
+        "questions_to_ask": [
+          "What does onboarding look like?",
+          "What technologies does the team use?"
+        ]
+      }
+    },
+    "weakness_mitigation": [
+      {
+        "weakness": "Limited production experience",
+        "mitigation": "Building production-ready projects and following best practices."
+      },
+      {
+        "weakness": "Early in my career with team collaboration experience",
+        "mitigation": "Demonstrated teamwork in internships and retail roles."
+      }
+    ]
+  },
+  "professional_development": {
+    "recent_learning": ["RAG systems", "Vector databases", "LLM integration", "Python virtual environments", "API development"],
+    "conferences_attended": [],
+    "publications": [],
+    "open_source": ["Digital Twin Workshop project"],
+    "online_courses": ["Python tutorials", "AI/ML fundamentals", "Web development"],
+    "technical_writing": ["Project documentation", "README files"]
+  },
+  "availability": {
+    "start_date": "Immediate / 2 weeks notice",
+    "work_hours": "Full-time availability (40 hours/week)",
+    "timezone": "AEST",
+    "visa_status": "Australian Citizen"
+  },
+  "references": {
+    "available": "Available upon request",
+    "supervisor": "UTAS Internship Supervisor",
+    "academic": "University lecturers"
+  }
+}
