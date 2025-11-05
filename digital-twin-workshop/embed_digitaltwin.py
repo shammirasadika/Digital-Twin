@@ -90,30 +90,48 @@ def create_chunks(data):
             "metadata": {"category": "personal", "type": "basic_info"}
         })
     
-    # Experience
+    # Experience - Create multiple focused chunks per experience entry
     if 'experience' in data:
         for idx, exp in enumerate(data['experience']):
-            chunk_text = f"Company: {exp.get('company', '')}\n"
-            chunk_text += f"Title: {exp.get('title', '')}\n"
-            chunk_text += f"Duration: {exp.get('duration', '')}\n"
-            chunk_text += f"Context: {exp.get('company_context', '')}\n"
+            company = exp.get('company', '')
+            title = exp.get('title', '')
+            duration = exp.get('duration', '')
             
-            # Add STAR achievements
-            if 'achievements_star' in exp:
-                chunk_text += "\nAchievements:\n"
-                for achievement in exp['achievements_star']:
-                    chunk_text += f"- Situation: {achievement.get('situation', '')}\n"
-                    chunk_text += f"  Task: {achievement.get('task', '')}\n"
-                    chunk_text += f"  Action: {achievement.get('action', '')}\n"
-                    chunk_text += f"  Result: {achievement.get('result', '')}\n"
-            
-            chunk_text += f"\nTechnical Skills Used: {', '.join(exp.get('technical_skills_used', []))}"
+            # Chunk 1: Company overview
+            overview_text = f"Company: {company}\n"
+            overview_text += f"Title: {title}\n"
+            overview_text += f"Duration: {duration}\n"
+            overview_text += f"Location: {exp.get('location', '')}\n"
+            overview_text += f"Context: {exp.get('company_context', '')}\n"
+            overview_text += f"Team Structure: {exp.get('team_structure', '')}\n"
+            overview_text += f"Technical Skills: {', '.join(exp.get('technical_skills_used', []))}"
             
             chunks.append({
-                "id": f"experience_{idx}",
-                "text": chunk_text,
-                "metadata": {"category": "experience", "company": exp.get('company', '')}
+                "id": f"exp_{idx}_overview",
+                "text": overview_text,
+                "metadata": {"category": "experience", "company": company, "type": "overview"}
             })
+            
+            # Chunk 2-N: Each STAR achievement gets its own chunk for better retrieval
+            if 'achievements_star' in exp:
+                for ach_idx, achievement in enumerate(exp['achievements_star']):
+                    achievement_text = f"Experience at {company} as {title}:\n\n"
+                    achievement_text += f"Situation: {achievement.get('situation', '')}\n\n"
+                    achievement_text += f"Task: {achievement.get('task', '')}\n\n"
+                    achievement_text += f"Action: {achievement.get('action', '')}\n\n"
+                    achievement_text += f"Result: {achievement.get('result', '')}\n\n"
+                    achievement_text += f"Technologies: {', '.join(exp.get('technical_skills_used', []))}"
+                    
+                    chunks.append({
+                        "id": f"exp_{idx}_achievement_{ach_idx}",
+                        "text": achievement_text,
+                        "metadata": {
+                            "category": "experience",
+                            "company": company,
+                            "type": "achievement",
+                            "role": title
+                        }
+                    })
     
     # Skills
     if 'skills' in data:
