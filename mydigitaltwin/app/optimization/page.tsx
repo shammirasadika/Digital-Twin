@@ -37,7 +37,7 @@ export default function Optimization() {
               <div className="bg-red-50 border-2 border-red-300 rounded-lg p-6">
                 <h4 className="text-xl font-bold text-red-700 mb-4 flex items-center">
                   <span className="mr-2">❌</span>
-                  Before Optimization (Week 6)
+                  Initial Implementation
                 </h4>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
@@ -76,7 +76,7 @@ export default function Optimization() {
               <div className="bg-green-50 border-2 border-green-500 rounded-lg p-6">
                 <h4 className="text-xl font-bold text-green-700 mb-4 flex items-center">
                   <span className="mr-2">✅</span>
-                  After Optimization (Week 7)
+                  Optimized Architecture
                 </h4>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
