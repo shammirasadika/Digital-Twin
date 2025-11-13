@@ -2,6 +2,7 @@
 
 import { Index } from "@upstash/vector";
 import Groq from "groq-sdk";
+import { enhanceQuery, formatForInterview, formatForInterviewType, RAG_CONFIGS } from "@/lib/llm-enhanced-rag";
 
 // Initialize Upstash Vector client
 const index = new Index({
@@ -127,6 +128,147 @@ export async function testGroqConnection() {
     return {
       success: false,
       message: `Connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+    };
+  }
+}
+
+/**
+ * ENHANCED RAG: Query with LLM preprocessing and postprocessing
+ * This provides significantly better interview-ready responses
+ */
+export async function enhancedDigitalTwinQuery(question: string) {
+  try {
+    // Step 1: Enhance the query with LLM for better search
+    const enhancedQuery = await enhanceQuery(question);
+    
+    // Step 2: Perform vector search with enhanced query
+    const vectorResults = await index.query({
+      data: enhancedQuery,
+      topK: 5,
+      includeMetadata: true,
+    });
+
+    if (vectorResults.length === 0) {
+      return {
+        success: false,
+        answer: "I couldn't find relevant information in my profile database. Please try rephrasing your question.",
+        metadata: {
+          originalQuery: question,
+          enhancedQuery: enhancedQuery,
+          resultsFound: 0,
+        },
+      };
+    }
+
+    // Step 3: Format results for interview context with LLM
+    const interviewResponse = await formatForInterview(vectorResults, question);
+
+    return {
+      success: true,
+      answer: interviewResponse,
+      metadata: {
+        originalQuery: question,
+        enhancedQuery: enhancedQuery,
+        resultsFound: vectorResults.length,
+      },
+    };
+  } catch (error) {
+    console.error("Error in enhancedDigitalTwinQuery:", error);
+    
+    // Fallback to basic RAG if enhancement fails
+    return await digitalTwinQuery(question);
+  }
+}
+
+/**
+ * Context-aware enhanced RAG with interview type specification
+ */
+export async function contextAwareDigitalTwinQuery(
+  question: string,
+  interviewType: keyof typeof RAG_CONFIGS
+) {
+  try {
+    // Step 1: Enhance the query
+    const enhancedQuery = await enhanceQuery(question);
+    
+    // Step 2: Perform vector search
+    const vectorResults = await index.query({
+      data: enhancedQuery,
+      topK: 5,
+      includeMetadata: true,
+    });
+
+    if (vectorResults.length === 0) {
+      return {
+        success: false,
+        answer: "I couldn't find relevant information in my profile database.",
+        metadata: {
+          originalQuery: question,
+          enhancedQuery: enhancedQuery,
+          interviewType: interviewType,
+          resultsFound: 0,
+        },
+      };
+    }
+
+    // Step 3: Format with interview type context
+    const interviewResponse = await formatForInterviewType(
+      vectorResults,
+      question,
+      interviewType
+    );
+
+    return {
+      success: true,
+      answer: interviewResponse,
+      metadata: {
+        originalQuery: question,
+        enhancedQuery: enhancedQuery,
+        interviewType: interviewType,
+        resultsFound: vectorResults.length,
+      },
+    };
+  } catch (error) {
+    console.error(`Error in contextAwareDigitalTwinQuery (${interviewType}):`, error);
+    return await digitalTwinQuery(question);
+  }
+}
+
+/**
+ * Comparison function: Test basic vs enhanced RAG
+ */
+export async function compareRAGApproaches(question: string) {
+  const startTime = Date.now();
+
+  try {
+    const [basicResult, enhancedResult] = await Promise.all([
+      digitalTwinQuery(question),
+      enhancedDigitalTwinQuery(question),
+    ]);
+
+    const endTime = Date.now();
+
+    return {
+      question,
+      results: {
+        basic: {
+          response: basicResult.answer,
+          success: basicResult.success,
+        },
+        enhanced: {
+          response: enhancedResult.answer,
+          success: enhancedResult.success,
+          enhancedQuery: 'metadata' in enhancedResult ? enhancedResult.metadata?.enhancedQuery : undefined,
+        },
+      },
+      totalComparisonTime: endTime - startTime,
+    };
+  } catch (error) {
+    console.error("Error in compareRAGApproaches:", error);
+    return {
+      question,
+      error: `Comparison failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      totalComparisonTime: Date.now() - startTime,
     };
   }
 }
