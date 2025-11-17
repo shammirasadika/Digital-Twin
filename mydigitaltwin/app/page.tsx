@@ -1,11 +1,13 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
+import { enhancedDigitalTwinQuery } from './actions/digital-twin-actions';
 
 export default function Home() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [loading, setLoading] = useState(false);
+  const [enhancedQuery, setEnhancedQuery] = useState('');
 
   const sampleQuestions = [
     "Tell me about your work experience",
@@ -21,26 +23,21 @@ export default function Home() {
     
     setLoading(true);
     setAnswer('');
+    setEnhancedQuery('');
     
     try {
-      const response = await fetch('/api/mcp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          jsonrpc: '2.0',
-          method: 'tools/call',
-          params: {
-            name: 'query_digital_twin',
-            arguments: { question }
-          },
-          id: 1
-        })
-      });
+      const result = await enhancedDigitalTwinQuery(question);
       
-      const data = await response.json();
-      setAnswer(data.result?.content?.[0]?.text || 'No response received');
-    } catch {
-      setAnswer('Error connecting to MCP server. Please try again.');
+      if (result.success) {
+        setAnswer(result.answer);
+        if ('metadata' in result && result.metadata?.enhancedQuery) {
+          setEnhancedQuery(result.metadata.enhancedQuery as string);
+        }
+      } else {
+        setAnswer(result.answer || 'Unable to get response. Please try again.');
+      }
+    } catch (error) {
+      setAnswer(`Error: ${error instanceof Error ? error.message : 'Unable to process your question'}`);
     } finally {
       setLoading(false);
     }
@@ -89,7 +86,13 @@ export default function Home() {
 
         {/* Main Content */}
         <div className="bg-white rounded-lg shadow-2xl p-8">
-          <h2 className="text-3xl font-bold text-blue-700 mb-6">Ask About My Professional Background</h2>
+          <div className="mb-6">
+            <h2 className="text-3xl font-bold text-blue-700 mb-2">Ask About My Professional Background</h2>
+            <div className="flex items-center gap-2 text-sm">
+              <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full font-semibold">✨ Enhanced RAG</span>
+              <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full font-semibold">🎯 STAR Format</span>
+            </div>
+          </div>
           
           {/* Question Input */}
           <textarea
@@ -105,13 +108,21 @@ export default function Home() {
             disabled={loading || !question.trim()}
             className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 disabled:bg-gray-300 disabled:cursor-not-allowed mb-6"
           >
-            {loading ? 'Thinking...' : 'Ask Question'}
+            {loading ? '✨ Generating Response...' : '🎯 Ask Question'}
           </button>
+
+          {/* Enhanced Query Display */}
+          {enhancedQuery && (
+            <div className="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+              <h3 className="font-semibold text-purple-800 mb-2">🔍 Enhanced Search Query:</h3>
+              <p className="text-sm text-gray-700 italic">{enhancedQuery}</p>
+            </div>
+          )}
 
           {/* Answer Display */}
           {answer && (
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
-              <h3 className="font-semibold text-blue-800 mb-2">Answer:</h3>
+              <h3 className="font-semibold text-blue-800 mb-2">✨ Answer:</h3>
               <p className="text-gray-700 whitespace-pre-wrap">{answer}</p>
             </div>
           )}
