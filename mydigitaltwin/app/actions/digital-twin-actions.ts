@@ -134,7 +134,7 @@ export async function testGroqConnection() {
 
 /**
  * ENHANCED RAG: Query with LLM preprocessing and postprocessing
- * This provides significantly better interview-ready responses
+ * This provides significantly better professional responses
  */
 export async function enhancedDigitalTwinQuery(question: string) {
   try {
@@ -160,12 +160,12 @@ export async function enhancedDigitalTwinQuery(question: string) {
       };
     }
 
-    // Step 3: Format results for interview context with LLM
-    const interviewResponse = await formatForInterview(vectorResults, question);
+    // Step 3: Format results for professional context with LLM
+    const formattedResponse = await formatForInterview(vectorResults, question);
 
     return {
       success: true,
-      answer: interviewResponse,
+      answer: formattedResponse,
       metadata: {
         originalQuery: question,
         enhancedQuery: enhancedQuery,

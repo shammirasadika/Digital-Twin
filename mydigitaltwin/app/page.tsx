@@ -111,13 +111,6 @@ export default function Home() {
             {loading ? '✨ Generating Response...' : '🎯 Ask Question'}
           </button>
 
-          {/* Enhanced Query Display */}
-          {enhancedQuery && (
-            <div className="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
-              <h3 className="font-semibold text-purple-800 mb-2">🔍 Enhanced Search Query:</h3>
-              <p className="text-sm text-gray-700 italic">{enhancedQuery}</p>
-            </div>
-          )}
 
           {/* Answer Display */}
           {answer && (
